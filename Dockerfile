@@ -3,7 +3,7 @@ FROM openjdk:8-alpine
 # Configuration variables.
 ENV JIRA_HOME     /var/atlassian/jira
 ENV JIRA_INSTALL  /opt/atlassian/jira
-ENV JIRA_VERSION  7.12.1
+ENV JIRA_VERSION  8.1.0
 ENV POSTGRES_JDBC_VERSION 42.2.5
 ENV MYSQL_JDBC_VERSION 8.0.13
 
