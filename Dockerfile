@@ -3,8 +3,8 @@ FROM openjdk:8-alpine
 # Configuration variables.
 ENV JIRA_HOME     /var/atlassian/jira
 ENV JIRA_INSTALL  /opt/atlassian/jira
-ENV JIRA_VERSION  8.1.0
-ENV POSTGRES_JDBC_VERSION 42.2.5
+ENV JIRA_VERSION  8.12.2
+ENV POSTGRES_JDBC_VERSION 42.2.16
 ENV MYSQL_JDBC_VERSION 8.0.13
 
 # Install Atlassian JIRA and helper tools and setup initial home
@@ -17,7 +17,7 @@ RUN set -x \
     && chown -R daemon:daemon  "${JIRA_HOME}" \
     && mkdir -p                "${JIRA_INSTALL}/conf/Catalina" \
     && curl -Ls                "https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_VERSION}.tar.gz" | tar -xz --directory "${JIRA_INSTALL}" --strip-components=1 --no-same-owner \
-    && curl -Ls                "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_JDBC_VERSION}.tar.gz" | tar -xz --directory "${JIRA_INSTALL}/lib" --strip-components=1 --no-same-owner "mysql-connector-java-${MYSQL_JDBC_VERSION}/mysql-connector-java-${MYSQL_JDBC_VERSION}.jar" \
+#    && curl -Ls                "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_JDBC_VERSION}.tar.gz" | tar -xz --directory "${JIRA_INSTALL}/lib" --strip-components=1 --no-same-owner "mysql-connector-java-${MYSQL_JDBC_VERSION}/mysql-connector-java-${MYSQL_JDBC_VERSION}.jar" \
     && rm -f                   "${JIRA_INSTALL}/lib/postgresql-*.jar" \
     && curl -Ls                "https://jdbc.postgresql.org/download/postgresql-${POSTGRES_JDBC_VERSION}.jar" -o "${JIRA_INSTALL}/lib/postgresql-${POSTGRES_JDBC_VERSION}.jar" \
     && chmod -R 700            "${JIRA_INSTALL}/conf" \
